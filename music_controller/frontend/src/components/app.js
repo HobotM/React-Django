@@ -8,8 +8,10 @@ export default class App extends Component {
     }
 
     render(){
-        return
-        <h1>Testing react app</h1>;
+        return <h1>Testing react app</h1>;
     }
 
 }
+
+const appDiv = document.createElementById("app");
+render (<App />, appDiv);
