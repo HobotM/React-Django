@@ -32,23 +32,24 @@ export default class CreateRoomJoinPage extends Component {
         });
     }
 
-    handleGuestCanPauseChange(e){
+    handleGuestCanPauseChange(e) {
         this.setState({
-            guestCanPause:e.target.value === 'true' ? true : false,
+            guestCanPause: e.target.value === 'true' ? true : false,
         });
     }
 
-    handleRoomButtonPressed(){
+    handleRoomButtonPressed() {
         const requestOptions = {
             method: 'POST',
-            headers:{'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 votes_to_skip: this.state.votesToSkip,
                 guest_can_pause: this.state.guestCanPause
             }),
         };
-        fetch("/create-room", requestOptions).then((response) =>
-        response.json()).then((data)=> console.log(data));
+        fetch("/create-room", requestOptions)
+            .then((response) => response.json())
+            .then((data) => console.log(data));
     }
 
     render() {
@@ -82,27 +83,27 @@ export default class CreateRoomJoinPage extends Component {
                 </Grid>
                 <Grid item xs={12} align="center">
                     <FormControl>
-                        <TextField 
-                        required={true} 
-                        type="number" 
-                        onChange={this.handleVotesChange}
-                        defaultValue={this.defaultVotes} 
-                        inputProps={{ min: 1, style:{textAlign: "center"} }} />
-                    <FormHelperText>
-                        <div align="center">
-                            Votes required to skip song
-                        </div>
-                    </FormHelperText>
+                        <TextField
+                            required={true}
+                            type="number"
+                            onChange={this.handleVotesChange}
+                            defaultValue={this.defaultVotes}
+                            inputProps={{ min: 1, style: { textAlign: "center" } }} />
+                        <FormHelperText>
+                            <div align="center">
+                                Votes required to skip song
+                            </div>
+                        </FormHelperText>
                     </FormControl>
                 </Grid>
                 <Grid item xs={12} align="center">
-                    <Button color="primary" 
-                    variant="contained"
-                    onClick={this.handleRoomButtonPressed}
-                    
+                    <Button color="primary"
+                        variant="contained"
+                        onClick={this.handleRoomButtonPressed}
+
                     >
                         Create A Room
-                        </Button>
+                    </Button>
                 </Grid>
                 <Grid item xs={12} align="center">
                     <Button color="secondary" variant="contained" to="/" component={Link}>Back</Button>
